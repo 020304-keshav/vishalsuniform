@@ -577,26 +577,55 @@
 <body>
   <div id="root"></div>
   
-  <!-- QR Code Modal -->
-  <div id="qrModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50 p-4 no-print">
-    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg max-w-md">
-      <h3 class="text-2xl font-bold mb-4">Scan QR Code</h3>
-      <div id="qrcode" class="mb-4"></div>
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Scan to visit our website</p>
-      <button onclick="closeQR()" class="bg-primary text-white px-6 py-2 rounded ripple press-effect">Close</button>
-    </div>
+  <!-- QR Code Modal - WORKING VERSION -->
+<div id="qrModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50 p-4 no-print">
+  <div class="bg-white dark:bg-gray-800 p-8 rounded-lg max-w-md text-center">
+    <h3 class="text-2xl font-bold mb-4">Scan QR Code</h3>
+    
+    <!-- REAL SCANNABLE QR CODE IMAGE -->
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://vishalsuniform.netlify.app&format=png&margin=10&color=000&bgcolor=FFF" 
+         alt="QR Code for Vishal's Uniform Hyderabad"
+         class="mx-auto border-4 border-primary rounded-lg mb-4"
+         width="200"
+         height="200">
+    
+    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+      Scan with phone camera to visit website
+    </p>
+    
+    <button onclick="closeQR()" class="bg-primary text-white px-6 py-2 rounded ripple press-effect">
+      Close
+    </button>
   </div>
+</div>
 
-  <!-- QR Code Button -->
-  <button onclick="showQR()" class="fixed bottom-6 left-6 bg-gray-800 text-white p-3 rounded-full z-40 hover:bg-gray-900 no-print ripple press-effect" aria-label="Show QR Code">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-  </button>
-  
-  <!-- Print QR Code (hidden for screen, shown for print) -->
-  <div id="printQR" class="hidden print-only p-4 border"></div>
-  
-  <!-- QR Code Library -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<!-- QR Code Button -->
+<button onclick="showQR()" class="fixed bottom-6 left-6 bg-gray-800 text-white p-3 rounded-full z-40 hover:bg-gray-900 no-print ripple press-effect" aria-label="Show QR Code">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+</button>
+
+<script>
+// Simple QR functions
+function showQR() {
+  document.getElementById('qrModal').classList.remove('hidden');
+  document.getElementById('qrModal').classList.add('flex');
+}
+
+function closeQR() {
+  document.getElementById('qrModal').classList.add('hidden');
+  document.getElementById('qrModal').classList.remove('flex');
+}
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('qrModal');
+    if (!modal.classList.contains('hidden')) {
+      closeQR();
+    }
+  }
+});
+</script>
   
   <!-- Performance Monitoring Script -->
   <script>
