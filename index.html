@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+  (function () {
+    const redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect !== "/") {
+      history.replaceState(null, null, redirect);
+    }
+  })();
+</script>
+
   <meta name="google-site-verification" content="jKXqZiIsfiAk9UmCa_mktsND7i0gTv0DD9SmqyWg4OQ" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -3735,6 +3745,7 @@ document.addEventListener('keydown', (e) => {
   
 </body>
 </html>
+
 
 
 
